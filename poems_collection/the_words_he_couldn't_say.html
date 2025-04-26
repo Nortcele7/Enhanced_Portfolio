@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Empty Space Between Memories</title>
+  <style>
+
+    @import url('https://fonts.googleapis.com/css2?family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Winky Sans", sans-serif;
+    }
+
+    body {
+      background-color: #000000;
+      padding: 4rem 8%;
+      color: white;
+    }
+
+    .text {
+      text-align: center;
+      font-size: 2.5rem;
+      color: #2ee3ff;
+      margin-bottom: 4rem;
+    }
+
+    .poem-flow {
+      display: flex;
+      flex-direction: column;
+      gap: 4rem;
+    }
+
+    .stanza-block {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .stanza-block.stanza-image-left {
+      flex-direction: row-reverse;
+    }
+
+    .stanza-text, .stanza-image {
+      flex: 1;
+      min-width: 280px;
+    }
+
+    .stanza-text {
+      font-size: 1.1rem;
+      line-height: 2.2;
+    }
+
+    .stanza-image img {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 1rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    @media (max-width: 768px) {
+      .stanza-block,
+      .stanza-block.stanza-image-left {
+        flex-direction: column;
+      }
+      .stanza-text{
+        font-size: 85%;
+      }
+    }
+
+    .stanza-block {
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeIn 1s ease forwards;
+        animation-delay: 0.2s;
+        }
+
+        @keyframes fadeIn {
+        to {
+            opacity: 1;
+            transform: none;
+        }
+        }
+
+        .stanza-text {
+        line-height: 2.6; /* makes it more gentle */
+        }
+
+        .stanza-image img {
+          transition: transform 0.4s ease;
+        }
+        .stanza-image img:hover {
+          transform: scale(1.03);
+        }
+
+
+  </style>
+</head>
+<body>
+
+  <div class="text">
+    EMPTY SPACES BETWEEN MEMORIES
+  </div>
+
+  <section class="poem-flow">
+
+    <!-- Stanza 1 | Image 1 -->
+    <div class="stanza-block">
+      <div class="stanza-text">
+        <p>
+            This is the story of a guy in the form of poem specially about his heart <br>
+ And how his heart bore the pain of his and his beloved drifting far apart <br>
+ He didn’t have the courage to say that she was the silver lining to his dark cloud <br>
+ And it’s not the silence that haunts him, but its the words that he could never speak out loud <br>
+        </p>
+      </div>
+      <div class="stanza-image">
+        <img src="a_confession_1.jpg
+        " alt="Memory Image">
+      </div>
+    </div>
+
+    <!-- Image 2 | Stanza 2 -->
+    <div class="stanza-block stanza-image-left">
+      <div class="stanza-text">
+        <p>
+            He had a crush on her for a long time and guess in terms of love, he was pretty late <br>
+            He wanted to say, the moon is beautiful, isn’t it, but was forced to say sunset <br>
+            He tried so hard to get her and did so much efforts just to be with her <br>
+            But he never showed it to her and due to which he always used to suffer <br>
+        </p>
+      </div>
+      <div class="stanza-image">
+        <img src="a_confession_2.jpg" alt="Wind Image">
+      </div>
+    </div>
+
+    <!-- Stanza 3 | Image 3 -->
+    <div class="stanza-block">
+      <div class="stanza-text">
+        <p>
+            He always believed that efforts to matter so he decided to give a final throttle <br>
+ It took some time but eventually he realized that he was just nursing an empty bottle <br>
+ And that realization left him with immense pain, enduring scars and bruises <br>
+ He can beat the world for her but can’t beat the man she chooses <br>
+        </p>
+      </div>
+      <div class="stanza-image">
+        <img src="a_confession_3.jpg" alt="Time Image">
+      </div>
+    </div>
+
+    <!-- Image 4 | Stanza 4 -->
+    <div class="stanza-block stanza-image-left">
+      <div class="stanza-text">
+        <p>
+            He always thought about her and always loved her but she didn’t care <br>
+ And some stories don’t have a happy ending rather they are destined to end in despair <br>
+ He never gave up on her and she never gave up on him and in life both were quiet free <br>
+ It would be an amazing story if it was of 2 persons but unfortunately it was of three <br>
+
+           
+        </p>
+      </div>
+      <div class="stanza-image">
+        <img src="a_confession_4.jpg" alt="Breathe Image">
+      </div>
+    </div>
+
+    
+    </div>
+
+  </section>
+
+</body>
+</html>

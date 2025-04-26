@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Empty Space Between Memories</title>
+  <style>
+
+    @import url('https://fonts.googleapis.com/css2?family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Winky Sans", sans-serif;
+    }
+
+    body {
+      background-color: #000000;
+      padding: 4rem 8%;
+      color: white;
+    }
+
+    .text {
+      text-align: center;
+      font-size: 2.5rem;
+      color: #2ee3ff;
+      margin-bottom: 4rem;
+    }
+
+    .poem-flow {
+      display: flex;
+      flex-direction: column;
+      gap: 4rem;
+    }
+
+    .stanza-block {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .stanza-block.stanza-image-left {
+      flex-direction: row-reverse;
+    }
+
+    .stanza-text, .stanza-image {
+      flex: 1;
+      min-width: 280px;
+    }
+
+    .stanza-text {
+      font-size: 1.1rem;
+      line-height: 2.2;
+    }
+
+    .stanza-image img {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 1rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    @media (max-width: 768px) {
+      .stanza-block,
+      .stanza-block.stanza-image-left {
+        flex-direction: column;
+      }
+      .stanza-text{
+        font-size: 85%;
+      }
+    }
+
+    .stanza-block {
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeIn 1s ease forwards;
+        animation-delay: 0.2s;
+        }
+
+        @keyframes fadeIn {
+        to {
+            opacity: 1;
+            transform: none;
+        }
+        }
+
+        .stanza-text {
+        line-height: 2.6; /* makes it more gentle */
+        }
+
+        .stanza-image img {
+          transition: transform 0.4s ease;
+        }
+        .stanza-image img:hover {
+          transform: scale(1.03);
+        }
+
+
+  </style>
+</head>
+<body>
+
+  <div class="text">
+    EMPTY SPACES BETWEEN MEMORIES
+  </div>
+
+  <section class="poem-flow">
+
+    <!-- Stanza 1 | Image 1 -->
+    <div class="stanza-block">
+      <div class="stanza-text">
+        <p>
+            When they say that I always say your name in my prayers that’s kind of true <br>
+            But I never prayed to God make you mine rather I pray to make me worthy of you <br>
+            I know the flaws that I have in me and day by day I try to improve it <br>
+            And that’s because I just want to be good for you since you are my heartbeat <br>
+        </p>
+      </div>
+      <div class="stanza-image">
+        <img src="a_confession_1.jpg
+        " alt="Memory Image">
+      </div>
+    </div>
+
+    <!-- Image 2 | Stanza 2 -->
+    <div class="stanza-block stanza-image-left">
+      <div class="stanza-text">
+        <p>
+            I always remember you and there is not a single hour that passes without your name <br>
+ And I always seek to be with you with hope that together we will play life’s beautiful game <br>
+ Just like for revolving electron, neutron is the center, you are the center for my heart <br>
+ And just like electron, my revolving heart can neither come close to you nor drift apart
+        </p>
+      </div>
+      <div class="stanza-image">
+        <img src="a_confession_2.jpg" alt="Wind Image">
+      </div>
+    </div>
+
+    <!-- Stanza 3 | Image 3 -->
+    <div class="stanza-block">
+      <div class="stanza-text">
+        <p>
+            I always tried to be close with you but you didn’t notice and I guess that it’s my fate <br>
+            Hoped for the happy sunrise in my life but was rather gifted with sad sunset <br>
+            And guess we were like the sun and moon who can never ever meet each other <br>
+            And when its not written in the stars, then no amount of efforts can make us together <br>
+        </p>
+      </div>
+      <div class="stanza-image">
+        <img src="a_confession_3.jpg" alt="Time Image">
+      </div>
+    </div>
+
+    <!-- Image 4 | Stanza 4 -->
+    <div class="stanza-block stanza-image-left">
+      <div class="stanza-text">
+        <p>
+            And I think that you are that chapter of my life that I didn’t want to ever turn <br>
+ But this chapter was even more beautiful than the gorgeous rings of  <br>
+ Closing this chapter was the only option left and guess that’s how it went <br>
+ And I torn apart those thousands of letters that were really never sent <br>
+
+
+
+        </p>
+      </div>
+      <div class="stanza-image">
+        <img src="a_confession_4.jpg" alt="Breathe Image">
+      </div>
+    </div>
+
+    
+    </div>
+
+  </section>
+
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>A confession</title>
+  <style>
+
+    @import url('https://fonts.googleapis.com/css2?family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Winky Sans", sans-serif;
+    }
+
+    body {
+      background-color: #000000;
+      padding: 4rem 8%;
+      color: white;
+    }
+
+    .text {
+      text-align: center;
+      font-size: 2.5rem;
+      color: #2ee3ff;
+      margin-bottom: 4rem;
+    }
+
+    .poem-flow {
+      display: flex;
+      flex-direction: column;
+      gap: 4rem;
+    }
+
+    .stanza-block {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .stanza-block.stanza-image-left {
+      flex-direction: row-reverse;
+    }
+
+    .stanza-text, .stanza-image {
+      flex: 1;
+      min-width: 280px;
+    }
+
+    .stanza-text {
+      font-size: 1.1rem;
+      line-height: 2.2;
+    }
+
+    .stanza-image img {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 1rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    @media (max-width: 768px) {
+      .stanza-block,
+      .stanza-block.stanza-image-left {
+        flex-direction: column;
+      }
+      .stanza-text{
+        font-size: 85%;
+      }
+    }
+
+    .stanza-block {
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeIn 1s ease forwards;
+        animation-delay: 0.2s;
+        }
+
+        @keyframes fadeIn {
+        to {
+            opacity: 1;
+            transform: none;
+        }
+        }
+
+        .stanza-text {
+        line-height: 2.6; /* makes it more gentle */
+        }
+
+        .stanza-image img {
+          transition: transform 0.4s ease;
+        }
+        .stanza-image img:hover {
+          transform: scale(1.03);
+        }
+
+
+  </style>
+</head>
+<body>
+
+  <div class="text">
+    A CONFESSION
+  </div>
+
+  <section class="poem-flow">
+
+    <!-- Stanza 1 | Image 1 -->
+    <div class="stanza-block">
+      <div class="stanza-text">
+        <p>
+          If I sent you this poem believe me its my confession <br>
+          I just want you to know that you are my complete obsession <br>
+          It was morning of 21st August when you came into my sight <br>
+          And from that day you are my sunshine and my moonlight <br>
+        </p>
+      </div>
+      <div class="stanza-image">
+        <img src="a_confession_1.jpg
+        " alt="Memory Image">
+      </div>
+    </div>
+
+    <!-- Image 2 | Stanza 2 -->
+    <div class="stanza-block stanza-image-left">
+      <div class="stanza-text">
+        <p>
+          I had dedicated a poem to you but you didn’t even noticed <br>
+                And you are the only girl who is on top of my manifestation list <br>
+                To make you notice me I had tried million different ways <br>
+                But nothing worked out for me and only failure stays <br>
+        </p>
+      </div>
+      <div class="stanza-image">
+        <img src="a_confession_2.jpg" alt="Wind Image">
+      </div>
+    </div>
+
+    <!-- Stanza 3 | Image 3 -->
+    <div class="stanza-block">
+      <div class="stanza-text">
+        <p>
+          I know I am not good enough for you and you might love someone new <br>
+          But I always pray to God just to make me completely worthy for you <br>
+          You are my fondest wish and I may not be even in your wildest dreams <br>
+          But girl you are so pretty, even prettier than morning sunlight beams <br>
+        </p>
+      </div>
+      <div class="stanza-image">
+        <img src="a_confession_3.jpg" alt="Time Image">
+      </div>
+    </div>
+
+    <!-- Image 4 | Stanza 4 -->
+    <div class="stanza-block stanza-image-left">
+      <div class="stanza-text">
+        <p>
+          Your smile is as bright as the stars and attitude is seemingly bold <br>
+          You are exceptionally gorgeous and even prettier than rose gold <br>
+          Your humour is so nice and your way of talking is what I like the most <br>
+          And after looking into your eyes for the very first day I had already been lost <br>
+        </p>
+      </div>
+      <div class="stanza-image">
+        <img src="a_confession_4.jpg" alt="Breathe Image">
+      </div>
+    </div>
+
+    <!-- Image 5 | Stanza 5 -->
+    <div class="stanza-block">
+      <div class="stanza-text">
+        <p>
+          I don’t know why I am writing this even knowing you won’t ever be mine <br>
+                But how can I not write this for you when you are my only sunshine <br>
+                I know I may be the most boring person on your following list <br>
+                But after writing this I am hoping one day I will get noticed <br>
+        </p>
+      </div>
+      <div class="stanza-image">
+        <img src="later_use.jpg" alt="Breathe Image">
+      </div>
+    </div>
+
+  </section>
+
+</body>
+</html>

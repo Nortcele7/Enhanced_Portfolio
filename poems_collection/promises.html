@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Empty Space Between Memories</title>
+  <style>
+
+    @import url('https://fonts.googleapis.com/css2?family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Winky Sans", sans-serif;
+    }
+
+    body {
+      background-color: #000000;
+      padding: 4rem 8%;
+      color: white;
+    }
+
+    .text {
+      text-align: center;
+      font-size: 2.5rem;
+      color: #2ee3ff;
+      margin-bottom: 4rem;
+    }
+
+    .poem-flow {
+      display: flex;
+      flex-direction: column;
+      gap: 4rem;
+    }
+
+    .stanza-block {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .stanza-block.stanza-image-left {
+      flex-direction: row-reverse;
+    }
+
+    .stanza-text, .stanza-image {
+      flex: 1;
+      min-width: 280px;
+    }
+
+    .stanza-text {
+      font-size: 1.1rem;
+      line-height: 2.2;
+    }
+
+    .stanza-image img {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 1rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    @media (max-width: 768px) {
+      .stanza-block,
+      .stanza-block.stanza-image-left {
+        flex-direction: column;
+      }
+      .stanza-text{
+        font-size: 85%;
+      }
+    }
+
+    .stanza-block {
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeIn 1s ease forwards;
+        animation-delay: 0.2s;
+        }
+
+        @keyframes fadeIn {
+        to {
+            opacity: 1;
+            transform: none;
+        }
+        }
+
+        .stanza-text {
+        line-height: 2.6; /* makes it more gentle */
+        }
+
+        .stanza-image img {
+          transition: transform 0.4s ease;
+        }
+        .stanza-image img:hover {
+          transform: scale(1.03);
+        }
+
+
+  </style>
+</head>
+<body>
+
+  <div class="text">
+    EMPTY SPACES BETWEEN MEMORIES
+  </div>
+
+  <section class="poem-flow">
+
+    <!-- Stanza 1 | Image 1 -->
+    <div class="stanza-block">
+      <div class="stanza-text">
+        <p>
+            Dancing in the night light and talking with the moon <br>
+ In my heart you are mine whether its midnight or noon <br>
+ Passing by every temple I pray to God to make you mine <br>
+ Swear to God that girl you are simply gorgeous and divine <br>
+ In my mind you are engraved and no one can ever erase <br>
+ Know I am not good enough but every challenge I am ready to face <br>
+ Handing my every prayer to God for you just to make you my girl <br>
+ And I promise I will always support you in life in every twist and twirl <br>
+        </p>
+      </div>
+      <div class="stanza-image">
+        <img src="a_confession_1.jpg
+        " alt="Memory Image">
+      </div>
+    </div>
+
+    <!-- Image 2 | Stanza 2 -->
+    <div class="stanza-block stanza-image-left">
+      <div class="stanza-text">
+        <p>
+            Did everything what I could do just to make us together <br>
+            Having you in my life by my side is the best thing ever <br>
+            I proposed you on veintiuno de febrero and that day is when I felt like love is in the air <br>
+            To my life you are a blessing, the best present and my answered prayer <br>
+            All I want to say you that thank you for bearing me and being with me when I am feeling blue <br>
+            Loving you and being loved by you feels like an impossible dream come true <br>
+            </p>
+        </div>
+      <div class="stanza-image">
+        <img src="a_confession_2.jpg" alt="Wind Image">
+      </div>
+    </div>
+
+    <!-- Stanza 3 | Image 3 -->
+    <div class="stanza-block">
+      <div class="stanza-text">
+        <p>
+            I just want to thank god for blessing me with this girl who can walk with me even on the flame <br>
+            Life feels damn good when I finally have a girl who thinks me as a blessing rather than shame <br>
+            Yes, and to all wondering the primeros catorce letters make her beautiful name <br>
+           
+        </p>
+      </div>
+      <div class="stanza-image">
+        <img src="a_confession_3.jpg" alt="Time Image">
+      </div>
+    </div>
+
+    
+    
+    </div>
+
+  </section>
+
+</body>
+</html>

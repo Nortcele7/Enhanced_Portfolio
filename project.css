@@ -1,0 +1,302 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Quicksand:wght@300..700&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: black;
+}
+
+#title
+{
+    font-family: "Amatic SC", serif;
+    font-size: 50px;
+    font-weight: bold;
+    color: white;
+}
+
+@media(max-width: 900px){
+    /* ------------------------- main book store ---------------------------- */
+    main{
+        margin-top: 1em;
+        font-family: "Amatic SC", serif;
+    }
+    .project1{
+        display: flex;
+        flex-direction: row;
+        font-family: "Quicksand", sans-serif;
+        background-color: #E8D8BA;
+        border-radius: 10px;
+        margin-bottom: 3em;
+        box-shadow: #ffffff 0px 25px 50px -12px;
+    }
+    
+    .project1_img{
+        width: 100%;
+        max-width: 150px;
+        margin: 1.5em;
+        border-radius: 3px;
+        transition: transform 1s;
+        box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    }
+    .project1_img:hover{
+        transform: scale(1.05);
+    }
+    .descp{
+        margin: 1.5em;
+        padding: 1em;
+        
+    }
+    .project1_name{
+        font-weight: bold;
+        padding-bottom: 0.2em;
+        font-size: 3em;
+        letter-spacing: 1px;
+        color: white;
+    }
+    .project1_author{
+        padding-bottom: 0.5em;
+        font-size: 1.5em;
+        letter-spacing: 1px;
+        color: white;
+    }
+    .project1_info{
+        font-size: 1em;
+        letter-spacing: 0.5px;
+        color: white;
+    }
+
+    .button1
+    {
+        width: 150px;
+        height: 40px;
+        border-radius: 20px;
+        border: 2px solid #763e01;
+        background: none;
+        color: #763e01;
+        font-size: 20px;
+    }
+
+    .button1:hover
+    {
+        color: white;
+    }
+    
+    .project2{
+        display: flex;
+        flex-direction: row;
+        font-family: "Quicksand", sans-serif;
+        background-color: #DDC2EC;
+        border-radius: 10px;
+        margin-bottom: 3em;
+        box-shadow: #ffffff 0px 25px 50px -12px;
+    }
+    
+    .project2_img{
+        width: 100%;
+        max-width: 150px;
+        margin: 1.5em;
+        border-radius: 3px;
+        transition: transform 1s;
+        box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    }
+    .project2_img:hover{
+        transform: scale(1.05);
+    }
+    .descp{
+        margin: 1.5em;
+        padding: 1em;
+        
+    }
+    .project2_name{
+        font-weight: bold;
+        padding-bottom: 0.2em;
+        font-size: 3em;
+        letter-spacing: 1px;
+        color: white;
+    }
+    .project2_author{
+        padding-bottom: 0.5em;
+        font-size: 1.5em;
+        letter-spacing: 1px;
+        color: white;
+    }
+    .project2_info{
+        font-size: 1em;
+        letter-spacing: 0.5px;
+        color: white;
+    }
+
+    .button2
+    {
+        width: 150px;
+        height: 40px;
+        border-radius: 20px;
+        border: 2px solid #f27aff;
+        background: none;
+        color: #f27aff;
+        font-size: 20px;
+    }
+
+    .button2:hover
+    {
+        color: white;
+    }
+
+}
+
+
+
+
+
+
+/*--------------------------------------------------------------- fOR PC AND LAPTOPS -------------------------------------------- */
+@media(min-width: 900px){
+
+    /* ------------------- MAIN BOOKS ---------------------------------- */
+    main{
+        margin-top: 1em;
+        font-family: "Quicksand", sans-serif;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+    .project1{
+        display: flex;
+        flex-direction: row;
+        font-family: "Quicksand", sans-serif;
+        width: 100%;
+        max-width: 700px;
+        justify-content: center;
+        background-color: #E8D8BA;
+        border-radius: 10px;
+        margin-bottom: 3em;
+        box-shadow: #ffffff 0px 25px 50px -12px;
+    }
+
+    .project1_img{
+        width: 100%;
+        max-width: 150px;
+        border-radius: 3px;
+        transition: transform 1s;
+        margin: 1.5em;
+        box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    }
+    .project1_img:hover{
+        transform: scale(1.05);
+    }
+    .descp{
+        margin: 1.5em;
+        padding: 0.8em;
+        
+    }
+    .project1_name{
+        font-weight: bold;
+        padding-bottom: 0.5em;
+        font-size: 3em;
+        letter-spacing: 1px;
+        color: white;
+    }
+    .project1_author{
+        padding-bottom: 0.5em;
+        font-size: 1.5em;
+        letter-spacing: 1px;
+        color: white;
+    }
+
+    .project1_info{
+        font-size: 1em;
+        letter-spacing: 1px;
+        color: white;
+    }
+
+    .button1
+    {
+        width: 150px;
+        height: 40px;
+        border-radius: 20px;
+        border: 2px solid #763e01;
+        background: none;
+        color: #763e01;
+        font-size: 20px;
+    }
+
+    .button1:hover
+    {
+        color: white;
+    }
+
+
+
+
+    .project2{
+        display: flex;
+        flex-direction: row;
+        font-family: "Quicksand", sans-serif;
+        width: 100%;
+        max-width: 700px;
+        justify-content: center;
+        background-color: #DDC2EC;
+        border-radius: 10px;
+        margin-bottom: 3em;
+        box-shadow: #ffffff 0px 25px 50px -12px;
+    }
+
+    .project2_img{
+        width: 100%;
+        max-width: 150px;
+        border-radius: 3px;
+        transition: transform 1s;
+        margin: 1.5em;
+        box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    }
+    .project2_img:hover{
+        transform: scale(1.05);
+    }
+    .descp{
+        margin: 1.5em;
+        padding: 0.8em;
+        
+    }
+    .project2_name{
+        font-weight: bold;
+        padding-bottom: 0.5em;
+        font-size: 3em;
+        letter-spacing: 1px;
+        color: white;
+    }
+    .project2_author{
+        padding-bottom: 0.5em;
+        font-size: 1.5em;
+        letter-spacing: 1px;
+        color: white;
+    }
+
+    .project2_info{
+        font-size: 1em;
+        letter-spacing: 1px;
+        color: white;
+    }
+
+    .button2
+    {
+        width: 150px;
+        height: 40px;
+        border-radius: 20px;
+        border: 2px solid #f27aff;
+        background: none;
+        color: #f27aff;
+        font-size: 20px;
+    }
+
+    .button2:hover
+    {
+        color: white;
+    }
+
+    
+
+}

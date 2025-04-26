@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="promises_access.css">
+    <script src="disable_access.js"></script>
+</head>
+<body>
+    
+    <center>
+    <div id="password">
+        Password = <input type="password" name="a" id="a" autocomplete="off"><br><br>
+    </div>
+    <!-- <input type="button" value="ACCESS" id="access" onclick="access()"> -->
+     <a href="#" onclick="access()">ACCESS</a>
+    </center>
+
+
+    <script>
+
+       function access()
+       {
+
+        var a = document.getElementById("a").value
+
+        var password = a.toLowerCase()
+
+        if (password=="")
+        {
+            window.alert("PASSWORD CANNOT BE EMPTY")
+        }
+
+        else if (password=="dipsikha")
+        {
+            location.replace("promises.html")
+        }
+
+        else
+        {
+            window.alert("TRY AGAIN!!!")
+        }
+
+       }
+
+    </script>
+
+</body>
+</html>

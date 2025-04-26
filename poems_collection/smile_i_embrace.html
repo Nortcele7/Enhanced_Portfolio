@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Empty Space Between Memories</title>
+  <style>
+
+    @import url('https://fonts.googleapis.com/css2?family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Winky Sans", sans-serif;
+    }
+
+    body {
+      background-color: #000000;
+      padding: 4rem 8%;
+      color: white;
+    }
+
+    .text {
+      text-align: center;
+      font-size: 2.5rem;
+      color: #2ee3ff;
+      margin-bottom: 4rem;
+    }
+
+    .poem-flow {
+      display: flex;
+      flex-direction: column;
+      gap: 4rem;
+    }
+
+    .stanza-block {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .stanza-block.stanza-image-left {
+      flex-direction: row-reverse;
+    }
+
+    .stanza-text, .stanza-image {
+      flex: 1;
+      min-width: 280px;
+    }
+
+    .stanza-text {
+      font-size: 1.1rem;
+      line-height: 2.2;
+    }
+
+    .stanza-image img {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 1rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    @media (max-width: 768px) {
+      .stanza-block,
+      .stanza-block.stanza-image-left {
+        flex-direction: column;
+      }
+      .stanza-text{
+        font-size: 85%;
+      }
+    }
+
+    .stanza-block {
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeIn 1s ease forwards;
+        animation-delay: 0.2s;
+        }
+
+        @keyframes fadeIn {
+        to {
+            opacity: 1;
+            transform: none;
+        }
+        }
+
+        .stanza-text {
+        line-height: 2.6; /* makes it more gentle */
+        }
+
+        .stanza-image img {
+          transition: transform 0.4s ease;
+        }
+        .stanza-image img:hover {
+          transform: scale(1.03);
+        }
+
+
+  </style>
+</head>
+<body>
+
+  <div class="text">
+    EMPTY SPACES BETWEEN MEMORIES
+  </div>
+
+  <section class="poem-flow">
+
+    <!-- Stanza 1 | Image 1 -->
+    <div class="stanza-block">
+      <div class="stanza-text">
+        <p>
+            Before I saw you, I was a normal guy with no interest in love <br>
+ But when I saw you, I felt like you are an angel from the heaven above <br>
+ That day we didn’t talk and didn’t even look at each other <br>
+ But later that day I prayed to God to please make us together <br>
+        </p>
+      </div>
+      <div class="stanza-image">
+        <img src="a_confession_1.jpg
+        " alt="Memory Image">
+      </div>
+    </div>
+
+    <!-- Image 2 | Stanza 2 -->
+    <div class="stanza-block stanza-image-left">
+      <div class="stanza-text">
+        <p>
+            For me you are more beautiful than those gorgeous Saturn’s rings <br>
+            And your voice is melodious even more than when cuckoo bird sings <br>
+            I didn’t even care about love and feelings until I found you <br>
+            But after that day, I kept on getting those feelings and ever since it always grew <br>
+        </p>
+      </div>
+      <div class="stanza-image">
+        <img src="a_confession_2.jpg" alt="Wind Image">
+      </div>
+    </div>
+
+    <!-- Stanza 3 | Image 3 -->
+    <div class="stanza-block">
+      <div class="stanza-text">
+        <p>
+            I love you always and forever and more than I could ever express <br>
+            And you are the one by talking with whom I smile even my life is a mess <br>
+            I wish to get you but even more I pray to God to make me worthy for you <br>
+            And the promises that I make about you are not fake but it’s all actually true <br>
+        </p>
+      </div>
+      <div class="stanza-image">
+        <img src="a_confession_3.jpg" alt="Time Image">
+      </div>
+    </div>
+
+    <!-- Image 4 | Stanza 4 -->
+    <div class="stanza-block stanza-image-left">
+      <div class="stanza-text">
+        <p>
+            When you smile and laugh, it lights up my sad and depresses mood <br>
+ And girl you are perfect whether you are soft or too much rude <br>
+ I love your smile and its beautiful every time no matter how much I look at it <br>
+ And I hope that you would be mine because girl you are my heartbeat <br>
+
+
+        </p>
+      </div>
+      <div class="stanza-image">
+        <img src="a_confession_4.jpg" alt="Breathe Image">
+      </div>
+    </div>
+
+    
+    </div>
+
+  </section>
+
+</body>
+</html>

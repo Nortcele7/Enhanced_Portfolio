@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Math Illustrations</title>
+  <style>
+
+@import url('https://fonts.googleapis.com/css2?family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Winky Sans", sans-serif;
+}
+
+    body {
+      background-color: #f9f9f9;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 2rem;
+      color: #222;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: row;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .main-video {
+      flex: 3;
+      background: #fff;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      min-width: 300px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .main-video video {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .video-details {
+      margin-top: 10px;
+    }
+
+    .video-title {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 5px;
+    }
+
+    .video-description {
+      font-size: 1rem;
+      color: #666;
+      line-height: 1.4;
+    }
+
+    .recommendations {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      min-width: 250px;
+    }
+
+    .video-card {
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: background 0.2s;
+      text-align: center;
+      padding: 10px;
+    }
+
+    .video-card:hover {
+      background: #f0f0f0;
+    }
+
+    .thumbnail {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .video-info {
+      font-size: 15px;
+      font-weight: bold;
+      color: #333;
+      margin-top: 8px;
+    }
+
+    @media (max-width: 900px) {
+      .container {
+        flex-direction: column;
+      }
+
+      .recommendations {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+      }
+
+      .video-card {
+        width: 45%;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .video-card {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<h1>Math Illustrations 🎥</h1>
+
+<div class="container">
+  <!-- Main Video Player -->
+  <div class="main-video">
+    <video id="mainVideo" controls autoplay>
+      <source src="Manim_Final_Videos/SumOfNaturalNumbers.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+
+    <!-- Title and Description below video -->
+    <div class="video-details">
+      <div class="video-title" id="videoTitle">Sum of Natural Numbers</div>
+      <div class="video-description" id="videoDescription">
+        Learn how the formula for the sum of the first n natural numbers is derived using intuitive dot patterns and the Gauss trick!
+      </div>
+    </div>
+  </div>
+
+  <!-- Recommended Videos -->
+  <div class="recommendations">
+
+    <div class="video-card" onclick="changeVideo('Manim_Final_Videos/SumOfNaturalNumbers.mp4', 'Sum of Natural Numbers', 'Learn how the formula for the sum of the first n natural numbers is derived using intuitive dot patterns and the Gauss trick!')">
+      <img class="thumbnail" src="Manim_Thumbnails/Sum_of_natural_numbers_thumbnail.png" alt="Sum of Natural Numbers">
+      <div class="video-info">Sum of Natural Numbers</div>
+    </div>
+
+    <div class="video-card" onclick="changeVideo('Manim_Final_Videos/Factorial.mp4', 'Why 0!=1 ?', 'Explore the logic behind why factorial of zero is equal to 1 using basic combinatorics.')">
+      <img class="thumbnail" src="Manim_Thumbnails/Factorial_thumbnail.png" alt="Why 0!=1?">
+      <div class="video-info">Why 0!=1 ?</div>
+    </div>
+
+    <div class="video-card" onclick="changeVideo('Manim_Final_Videos/Factorial_Gamma_Function.mp4', 'Why 0!=1? Using Gamma Function', 'Understand the deeper connection between factorials and the gamma function, an important concept in advanced mathematics.')">
+      <img class="thumbnail" src="Manim_Thumbnails/Factorial_gamma_function_thumbnail.png" alt="Gamma Function">
+      <div class="video-info">Why 0!=1? Using Gamma Function</div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  function changeVideo(videoSrc, title, description) {
+    const mainVideo = document.getElementById('mainVideo');
+    const videoTitle = document.getElementById('videoTitle');
+    const videoDescription = document.getElementById('videoDescription');
+
+    mainVideo.src = videoSrc;
+    mainVideo.play();
+    videoTitle.textContent = title;
+    videoDescription.textContent = description;
+  }
+</script>
+
+</body>
+</html>
