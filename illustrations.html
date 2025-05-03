@@ -4,131 +4,149 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Math Illustrations</title>
+
   <style>
 
-@import url('https://fonts.googleapis.com/css2?family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Winky Sans", sans-serif;
-}
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "PT Sans", sans-serif;
+  }
 
-    body {
-      background-color: #f9f9f9;
-      padding: 20px;
-    }
+  body {
+    background-color: #f9f9f9;
+    padding: 20px;
+  }
 
-    h1 {
-      text-align: center;
-      margin-bottom: 20px;
-      font-size: 2rem;
-      color: #222;
-    }
+  h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2rem;
+    color: #222;
+  }
 
+  .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 30px;
+  }
+
+  .main-video {
+    width: 800px;
+    background: #fff;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  .main-video video {
+    width: 100%;
+    height: 450px;
+    border-radius: 10px;
+    background: #000;
+  }
+
+  .video-details {
+    margin-top: 15px;
+  }
+
+  .video-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #222;
+    margin-bottom: 8px;
+  }
+
+  .video-description {
+    font-size: 1rem;
+    color: #555;
+    margin-top: 5px;
+    line-height: 1.5;
+  }
+
+  .recommendations {
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding-right: 5px;
+  }
+
+  .video-card {
+    display: flex;
+    gap: 10px;
+    background: #fff;
+    padding: 8px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .video-card:hover {
+    background: #f1f1f1;
+    transform: scale(1.01);
+  }
+
+  .thumbnail {
+    width: 120px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  .video-info {
+    font-size: 0.95rem;
+    font-weight: bold;
+    color: #333;
+    display: flex;
+    align-items: center;
+  }
+
+  @media (max-width: 1000px) {
     .container {
-      display: flex;
-      flex-direction: row;
-      gap: 20px;
-      flex-wrap: wrap;
+      flex-direction: column;
+      align-items: center;
     }
 
     .main-video {
-      flex: 3;
-      background: #fff;
-      padding: 10px;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      min-width: 300px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .main-video video {
       width: 100%;
-      border-radius: 10px;
-    }
-
-    .video-details {
-      margin-top: 10px;
-    }
-
-    .video-title {
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: #333;
-      margin-bottom: 5px;
-    }
-
-    .video-description {
-      font-size: 1rem;
-      color: #666;
-      line-height: 1.4;
     }
 
     .recommendations {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      min-width: 250px;
+      width: 100%;
+      flex-direction: row;
+      overflow-x: scroll;
+      max-height: none;
+      padding: 10px 0;
     }
 
     .video-card {
-      background: #fff;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      cursor: pointer;
-      transition: background 0.2s;
-      text-align: center;
-      padding: 10px;
-    }
-
-    .video-card:hover {
-      background: #f0f0f0;
+      min-width: 220px;
+      flex-direction: column;
+      align-items: center;
     }
 
     .thumbnail {
       width: 100%;
-      height: 150px;
-      object-fit: cover;
-      border-radius: 8px;
+      height: 120px;
     }
 
     .video-info {
-      font-size: 15px;
-      font-weight: bold;
-      color: #333;
+      text-align: center;
       margin-top: 8px;
     }
+  }
 
-    @media (max-width: 900px) {
-      .container {
-        flex-direction: column;
-      }
-
-      .recommendations {
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 10px;
-        justify-content: center;
-      }
-
-      .video-card {
-        width: 45%;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .video-card {
-        width: 100%;
-      }
-    }
   </style>
 </head>
+
 <body>
 
 <h1>Math Illustrations 🎥</h1>
@@ -137,7 +155,7 @@
   <!-- Main Video Player -->
   <div class="main-video">
     <video id="mainVideo" controls autoplay>
-      <source src="Manim_Final_Videos/SumOfNaturalNumbers.mp4" type="video/mp4">
+      <source src="Manim_Final_Videos/Sum_of _natural_numbers_final.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
 
@@ -153,20 +171,37 @@
   <!-- Recommended Videos -->
   <div class="recommendations">
 
-    <div class="video-card" onclick="changeVideo('Manim_Final_Videos/SumOfNaturalNumbers.mp4', 'Sum of Natural Numbers', 'Learn how the formula for the sum of the first n natural numbers is derived using intuitive dot patterns and the Gauss trick!')">
-      <img class="thumbnail" src="Manim_Thumbnails/Sum_of_natural_numbers_thumbnail.png" alt="Sum of Natural Numbers">
+    <div class="video-card" onclick="changeVideo('Manim_Final_Videos/Sum_of_natural_numbers_final.mp4', 'Sum of Natural Numbers', 'Learn how the formula for the sum of the first n natural numbers is derived using intuitive dot patterns and the Gauss trick!')">
+      <img class="thumbnail" src="Manim_Thumbnails/Sum_of_natural_numbers_thumbnail.png" alt="Sum of Natural Numbers" loading="lazy">
       <div class="video-info">Sum of Natural Numbers</div>
     </div>
 
     <div class="video-card" onclick="changeVideo('Manim_Final_Videos/Factorial.mp4', 'Why 0!=1 ?', 'Explore the logic behind why factorial of zero is equal to 1 using basic combinatorics.')">
-      <img class="thumbnail" src="Manim_Thumbnails/Factorial_thumbnail.png" alt="Why 0!=1?">
+      <img class="thumbnail" src="Manim_Thumbnails/Factorial_thumbnail.png" alt="Why 0!=1?" loading="lazy">
       <div class="video-info">Why 0!=1 ?</div>
     </div>
 
-    <div class="video-card" onclick="changeVideo('Manim_Final_Videos/Factorial_Gamma_Function.mp4', 'Why 0!=1? Using Gamma Function', 'Understand the deeper connection between factorials and the gamma function, an important concept in advanced mathematics.')">
-      <img class="thumbnail" src="Manim_Thumbnails/Factorial_gamma_function_thumbnail.png" alt="Gamma Function">
+    <div class="video-card" onclick="changeVideo('Manim_Final_Videos/Factorial_Gamma_Function_Final.mp4', 'Why 0!=1? Using Gamma Function', 'Understand the deeper connection between factorials and the gamma function, an important concept in advanced mathematics.')">
+      <img class="thumbnail" src="Manim_Thumbnails/Factorial_gamma_function_thumbnail.png" alt="Gamma Function" loading="lazy">
       <div class="video-info">Why 0!=1? Using Gamma Function</div>
     </div>
+
+
+    <div class="video-card" onclick="changeVideo('Manim_Final_Videos/AM_GM_Final.mp4', 'Why is AM ≥ GM always?', 'The Arithmetic Mean-Geometric Mean (AM ≥ GM) inequality states that for any non-negative numbers, the arithmetic mean is always greater than or equal to the geometric mean, with equality holding only when all the numbers are equal.')">
+      <img class="thumbnail" src="Manim_Thumbnails/Factorial_gamma_function_thumbnail.png" alt="AM ≥ GM" loading="lazy">
+      <div class="video-info">Why is AM ≥ GM always?</div>
+    </div>
+
+    <div class="video-card" onclick="changeVideo('Manim_Final_Videos/e_final.mp4', 'Why is 2<e<3 ?', 'The inequality 2 < e < 3 is a fundamental result in mathematics, where e is Eulers Number the base of the natural logarithm, approximately equal to 2.71828.')">
+      <img class="thumbnail" src="Manim_Thumbnails/Factorial_gamma_function_thumbnail.png" alt="AM ≥ GM" loading="lazy">
+      <div class="video-info">Why is e greater than 2 and less than 3 ?</div>
+    </div>
+
+    <div class="video-card" onclick="changeVideo('Manim_Final_Videos/Pythagorean_Theorem_Final.mp4', 'Pythagorean Theorem Proof', '')">
+      <img class="thumbnail" src="Manim_Thumbnails/Factorial_gamma_function_thumbnail.png" alt="AM ≥ GM" loading="lazy">
+      <div class="video-info">Pythagorean Theorem Proof  ?</div>
+    </div>
+    
 
   </div>
 </div>
@@ -178,6 +213,7 @@
     const videoDescription = document.getElementById('videoDescription');
 
     mainVideo.src = videoSrc;
+    mainVideo.currentTime = 0;
     mainVideo.play();
     videoTitle.textContent = title;
     videoDescription.textContent = description;
