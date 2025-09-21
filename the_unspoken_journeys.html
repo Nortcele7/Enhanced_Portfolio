@@ -1,95 +1,526 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Albums</title>
-    <link rel="stylesheet" href="the_unspoken_journeys.css">
+    <title>The Unspoken Journeys | Poetry Collection</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Poiret+One&family=Playfair+Display:wght@400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap');
+
+        :root {
+            --primary-color: #b60000;
+            --accent-color: #b60000;
+            --text-light: #f9f9f9;
+            --text-dark: #212121;
+            --transition: all 0.4s ease;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: #f8f5f2;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        header {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url("the_love_i_couldnt_unfeel.jpg") center/cover no-repeat;
+            overflow: hidden;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1.5s forwards 0.5s;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1.main-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            font-weight: 700;
+            color: var(--text-light);
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .subtitle {
+            font-family: 'Poiret One', cursive;
+            font-size: 1.5rem;
+            color: var(--text-light);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .scroll-btn {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--text-light);
+            font-size: 1.2rem;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            opacity: 0;
+            animation: fadeIn 1s forwards 2s;
+            cursor: pointer;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .scroll-btn i {
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0);
+            }
+
+            40% {
+                transform: translateY(-10px);
+            }
+
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .poems-section {
+            padding: 100px 20px;
+            background-color: #f8f5f2;
+        }
+
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            color: var(--primary-color);
+            position: relative;
+        }
+
+        .section-title:after {
+            content: "";
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
+
+        .poems-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .poem-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .poem-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .poem-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .poem-img {
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .poem-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .poem-card:hover .poem-img img {
+            transform: scale(1.1);
+        }
+
+        .poem-content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            position: relative;
+        }
+
+        .poem-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .poem-description {
+            font-family: 'Poiret One', cursive;
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.5;
+            flex-grow: 1;
+        }
+
+        .read-btn {
+            display: inline-block;
+            padding: 10px 25px;
+            background-color: transparent;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            border: 1px solid var(--accent-color);
+            border-radius: 4px;
+            transition: var(--transition);
+            text-align: center;
+            margin-top: auto;
+            letter-spacing: 1px;
+        }
+
+        .read-btn:hover {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        footer {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .footer-content p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .social-links a {
+            color: var(--text-light);
+            font-size: 1.5rem;
+            margin: 0 15px;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        @media (max-width: 768px) {
+            h1.main-title {
+                font-size: 3.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .poems-container {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1.main-title {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
-<body>    
-    <section id="testimonials" class="testimonials">
-        <div class="testimonials-box">
-            <h1 class="heading">THE UNSPOKEN JOURNEYS</h1>
 
-            <div class="wrapper">
-                <div class="testimonial-item">
-                    <img src="the_unspoken_journeys_profile.png" alt="">
-                    <h2>DO I EVEN EXIST?</h2>
-                    <p>A raw search for meaning in a world that looks right through you.</p>
-                        <a href="poems_collection\do_i_even_exist.html" class="btn">See</a>
-                </div>
-
-                <div class="testimonial-item">
-                    <img src="euphoria_profile.png" alt="">
-                    <h2>FADED ECHOES OF US</h2>
-                    
-                    <p> The soft remnants of a love story fading into memory.</p>
-                        <a href="poems_collection\faded_echoes_of_us.html" class="btn">See</a>
-                </div>
-
-                <div class="testimonial-item">
-                    <img src="letting_go_profile.png" alt="">
-                    <h2>EMPTY SPACES BETWEEN MEMORIES</h2>
-                    <p>The painful gaps where once-vivid moments used to live.</p>
-                        <a href="poems_collection/empty_spaces_between_memories.html" class="btn">See </a>
-                </div>
-
-                <div class="testimonial-item">
-                    <img src="the_unspoken_journeys_profile.png" alt="">
-                    <h2>SILENT CONVERSATIONS</h2>
-                    <p>The heavy weight of things we wished we said but never did.</p>
-                        <a href="poems_collection/silent_conversations.html" class="btn">See</a>
-                </div>
-
-                <div class="testimonial-item">
-                    <img src="euphoria_profile.png" alt="">
-                    <h2>MIXED SIGNALS</h2>
-                    
-                    <p> The tangled confusion of emotions lost in miscommunication.</p>
-                        <a href="poems_collection/mixed_signals.html" class="btn">See</a>
-                </div>
-
-                <div class="testimonial-item">
-                    <img src="letting_go_profile.png" alt="">
-                    <h2>LAST PETAL OF A FADED ROSE</h2>
-                    <p>The bittersweet beauty of something ending with quiet grace.</p>
-                        <a href="poems_collection/last_petal_of_a_faded_rose.html" class="btn">See </a>
-                </div>
-
-                <div class="testimonial-item">
-                    <img src="the_unspoken_journeys_profile.png" alt="">
-                    <h2>SMILE I EMBRACE</h2>
-                    <p>Clutching onto fleeting happiness in a storm of uncertainty.</p>
-                        <a href="poems_collection/smile_i_embrace.html" class="btn">See</a>
-                </div>
-
-                <div class="testimonial-item">
-                    <img src="euphoria_profile.png" alt="">
-                    <h2>LETTERS NEVER SENT</h2>
-                    
-                    <p> Words trapped forever between hope, fear, and hesitation.</p>
-                        <a href="poems_collection/letters_never_sent.html" class="btn">See</a>
-                </div>
-
-                <div class="testimonial-item">
-                    <img src="letting_go_profile.png" alt="">
-                    <h2>WHERE DID WE GO WRONG</h2>
-                    <p>A tender unraveling of a bond that once felt unbreakable.</p>
-                        <a href="poems_collection/Where_did_we_go_wrong.html" class="btn">See </a>
-                </div>
-
-                <div class="testimonial-item">
-                    <img src="letting_go_profile.png" alt="">
-                    <h2>DANCING IN DELIGHT</h2>
-                    <p>A moment of pure joy blooming amidst the ruins.</p>
-                        <a href="poems_collection/dancing_in_delight.html" class="btn">See </a>
-                </div>
-
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1 class="main-title">THE UNSPOKEN JOURNEYS</h1>
+                <p class="subtitle">A collection of emotions too profound for ordinary conversations, captured in verse
+                </p>
             </div>
-        </div>
+            <a class="scroll-btn" href="#poems">
+                <span>Explore Collection</span>
+                <i class="fas fa-chevron-down"></i>
+            </a>
+        </header>
 
-                
-    </section>
+        <section id="poems" class="poems-section">
+            <h2 class="section-title">Poetry Collection</h2>
+
+            <div class="poems-container">
+                <div class="poem-card">
+                    <div class="poem-img">
+                        <img src="euphoria.jpg" alt="Do I Even Exist">
+                    </div>
+                    <div class="poem-content">
+                        <h3 class="poem-title">DO I EVEN EXIST?</h3>
+                        <p class="poem-description">A raw search for meaning in a world that looks right through you.
+                        </p>
+                        <a href="poems_collection/do_i_even_exist.html" class="read-btn">Read Poem</a>
+                    </div>
+                </div>
+
+                <div class="poem-card">
+                    <div class="poem-img">
+                        <img src="/api/placeholder/400/200" alt="Faded Echoes Of Us">
+                    </div>
+                    <div class="poem-content">
+                        <h3 class="poem-title">FADED ECHOES OF US</h3>
+                        <p class="poem-description">The soft remnants of a love story fading into memory.</p>
+                        <a href="poems_collection/faded_echoes_of_us.html" class="read-btn">Read Poem</a>
+                    </div>
+                </div>
+
+                <div class="poem-card">
+                    <div class="poem-img">
+                        <img src="/api/placeholder/400/200" alt="Empty Spaces Between Memories">
+                    </div>
+                    <div class="poem-content">
+                        <h3 class="poem-title">EMPTY SPACES BETWEEN MEMORIES</h3>
+                        <p class="poem-description">The painful gaps where once-vivid moments used to live.</p>
+                        <a href="poems_collection/empty_spaces_between_memories.html" class="read-btn">Read Poem</a>
+                    </div>
+                </div>
+
+                <div class="poem-card">
+                    <div class="poem-img">
+                        <img src="/api/placeholder/400/200" alt="Silent Conversations">
+                    </div>
+                    <div class="poem-content">
+                        <h3 class="poem-title">SILENT CONVERSATIONS</h3>
+                        <p class="poem-description">The heavy weight of things we wished we said but never did.</p>
+                        <a href="poems_collection/silent_conversations.html" class="read-btn">Read Poem</a>
+                    </div>
+                </div>
+
+                <div class="poem-card">
+                    <div class="poem-img">
+                        <img src="/api/placeholder/400/200" alt="Mixed Signals">
+                    </div>
+                    <div class="poem-content">
+                        <h3 class="poem-title">MIXED SIGNALS</h3>
+                        <p class="poem-description">The tangled confusion of emotions lost in miscommunication.</p>
+                        <a href="poems_collection/mixed_signals.html" class="read-btn">Read Poem</a>
+                    </div>
+                </div>
+
+                <div class="poem-card">
+                    <div class="poem-img">
+                        <img src="/api/placeholder/400/200" alt="Last Petal Of A Faded Rose">
+                    </div>
+                    <div class="poem-content">
+                        <h3 class="poem-title">LAST PETAL OF A FADED ROSE</h3>
+                        <p class="poem-description">The bittersweet beauty of something ending with quiet grace.</p>
+                        <a href="poems_collection/last_petal_of_a_faded_rose.html" class="read-btn">Read Poem</a>
+                    </div>
+                </div>
+
+                <div class="poem-card">
+                    <div class="poem-img">
+                        <img src="/api/placeholder/400/200" alt="Smile I Embrace">
+                    </div>
+                    <div class="poem-content">
+                        <h3 class="poem-title">SMILE I EMBRACE</h3>
+                        <p class="poem-description">Clutching onto fleeting happiness in a storm of uncertainty.</p>
+                        <a href="poems_collection/smile_i_embrace.html" class="read-btn">Read Poem</a>
+                    </div>
+                </div>
+
+                <div class="poem-card">
+                    <div class="poem-img">
+                        <img src="/api/placeholder/400/200" alt="Letters Never Sent">
+                    </div>
+                    <div class="poem-content">
+                        <h3 class="poem-title">LETTERS NEVER SENT</h3>
+                        <p class="poem-description">Words trapped forever between hope, fear, and hesitation.</p>
+                        <a href="poems_collection/letters_never_sent.html" class="read-btn">Read Poem</a>
+                    </div>
+                </div>
+
+                <div class="poem-card">
+                    <div class="poem-img">
+                        <img src="/api/placeholder/400/200" alt="Where Did We Go Wrong">
+                    </div>
+                    <div class="poem-content">
+                        <h3 class="poem-title">WHERE DID WE GO WRONG</h3>
+                        <p class="poem-description">A tender unraveling of a bond that once felt unbreakable.</p>
+                        <a href="poems_collection/Where_did_we_go_wrong.html" class="read-btn">Read Poem</a>
+                    </div>
+                </div>
+
+                <div class="poem-card">
+                    <div class="poem-img">
+                        <img src="/api/placeholder/400/200" alt="Dancing In Delight">
+                    </div>
+                    <div class="poem-content">
+                        <h3 class="poem-title">DANCING IN DELIGHT</h3>
+                        <p class="poem-description">A moment of pure joy blooming amidst the ruins.</p>
+                        <a href="poems_collection/dancing_in_delight.html" class="read-btn">Read Poem</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="footer-content">
+                <p>"Poetry is not a turning loose of emotion, but an escape from emotion; it is not the expression of
+                    personality, but an escape from personality."</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+                <p class="copyright">© Shreyam Regmi | All Rights Reserved</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Smooth scroll functionality
+        document.querySelector('.scroll-btn').addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector('#poems').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+
+        // Intersection Observer for fade-in effect
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('.poem-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Add a subtle parallax effect to header
+        window.addEventListener('scroll', function () {
+            const header = document.querySelector('header');
+            const scrollPosition = window.scrollY;
+
+            if (scrollPosition < window.innerHeight) {
+                header.style.backgroundPositionY = `calc(50% + ${scrollPosition * 0.5}px)`;
+            }
+        });
+
+        // Random poem highlight effect
+        function highlightRandomPoem() {
+            const poems = document.querySelectorAll('.poem-card');
+            const randomIndex = Math.floor(Math.random() * poems.length);
+
+            poems.forEach(poem => {
+                poem.style.transform = 'translateY(0)';
+            });
+
+            setTimeout(() => {
+                poems[randomIndex].style.transform = 'translateY(-10px)';
+            }, 200);
+        }
+
+        // Run highlight effect every 5 seconds
+        setInterval(highlightRandomPoem, 5000);
+    </script>
 </body>
-</html>
 
+</html>

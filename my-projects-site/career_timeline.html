@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Journey Timeline</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0a0a0a;
+            color: #e0e0e0;
+            overflow-x: hidden;
+            perspective: 1000px;
+        }
+
+        #particles-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .header {
+            text-align: center;
+            padding: 80px 20px 40px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease;
+        }
+
+        .header.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #c6a55c, #f1da9c, #c6a55c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 15px rgba(198, 165, 92, 0.3);
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            color: #a3a3a3;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px 100px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 3px;
+            background: linear-gradient(to bottom, transparent, #c6a55c, #c6a55c, transparent);
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+
+        .timeline-item {
+            position: relative;
+            width: 100%;
+            padding: 20px 0;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-content {
+            position: relative;
+            width: 45%;
+            padding: 25px;
+            border-radius: 8px;
+            background: rgba(10, 10, 10, 0.8);
+            border: 1px solid rgba(198, 165, 92, 0.3);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            transform-style: preserve-3d;
+            transform: perspective(1000px) rotateX(0deg);
+            z-index: 2;
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 25px;
+            width: 20px;
+            height: 20px;
+            background: #c6a55c;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(198, 165, 92, 0.8);
+            z-index: 3;
+        }
+
+        .timeline-content:hover {
+            transform: perspective(1000px) rotateX(3deg) scale(1.05);
+            border: 1px solid rgba(198, 165, 92, 0.8);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3),
+                0 0 20px rgba(198, 165, 92, 0.3);
+        }
+
+        .timeline-content::after {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            top: 29px;
+            background: #0a0a0a;
+            border-radius: 50%;
+            z-index: 4;
+        }
+
+        .left {
+            left: 0;
+        }
+
+        .right {
+            left: 55%;
+        }
+
+        .left .timeline-content::before {
+            right: -32px;
+        }
+
+        .right .timeline-content::before {
+            left: -32px;
+        }
+
+        .left .timeline-content::after {
+            right: -28px;
+        }
+
+        .right .timeline-content::after {
+            left: -28px;
+        }
+
+        .date {
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            font-size: 0.8rem;
+            padding: 5px 15px;
+            background: linear-gradient(to right, #0a0a0a, #302010);
+            border: 1px solid rgba(198, 165, 92, 0.5);
+            border-radius: 20px;
+            color: #c6a55c;
+            font-weight: 600;
+            letter-spacing: 1px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            z-index: 5;
+        }
+
+        .title {
+            color: #c6a55c;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+            font-weight: 600;
+            text-shadow: 0 0 5px rgba(198, 165, 92, 0.3);
+        }
+
+        .description {
+            color: #a3a3a3;
+            line-height: 1.6;
+            transition: all 0.5s ease;
+            margin-top: 15px;
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transform: translateY(10px);
+        }
+
+        .timeline-content:hover .description {
+            opacity: 1;
+            max-height: 500px;
+            transform: translateY(0);
+        }
+
+        .month-highlight {
+            font-weight: 600;
+            color: #c6a55c;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .tech-badge {
+            display: inline-block;
+            background-color: rgba(198, 165, 92, 0.1);
+            border: 1px solid rgba(198, 165, 92, 0.3);
+            border-radius: 15px;
+            padding: 3px 10px;
+            margin: 5px 5px 5px 0;
+            font-size: 0.8rem;
+            color: #c6a55c;
+            transition: all 0.3s ease;
+        }
+
+        .tech-badge:hover {
+            background-color: rgba(198, 165, 92, 0.2);
+            box-shadow: 0 0 10px rgba(198, 165, 92, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .glow {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            border-radius: 8px;
+            opacity: 0;
+            background: radial-gradient(circle at 50% 50%,
+                    rgba(198, 165, 92, 0.3),
+                    transparent 70%);
+            z-index: -1;
+            transition: opacity 0.3s ease;
+        }
+
+        .timeline-content:hover .glow {
+            opacity: 1;
+        }
+
+        @media screen and (max-width: 768px) {
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-content {
+                width: calc(100% - 60px);
+                padding: 20px;
+            }
+
+            .left,
+            .right {
+                left: 60px;
+            }
+
+            .left .timeline-content::before,
+            .right .timeline-content::before {
+                left: -32px;
+            }
+
+            .left .timeline-content::after,
+            .right .timeline-content::after {
+                left: -28px;
+            }
+        }
+
+        .scroll-icon {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            width: 30px;
+            height: 50px;
+            border: 2px solid rgba(198, 165, 92, 0.5);
+            border-radius: 15px;
+        }
+
+        .scroll-icon::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            width: 6px;
+            height: 6px;
+            background: #c6a55c;
+            border-radius: 50%;
+            transform: translateX(-50%);
+            animation: scrollDown 2s infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        @keyframes scrollDown {
+            0% {
+                opacity: 1;
+                top: 8px;
+            }
+
+            100% {
+                opacity: 0;
+                top: 32px;
+            }
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            width: 0;
+            background: linear-gradient(to right, #c6a55c, #f1da9c);
+            z-index: 1000;
+            transition: width 0.1s linear;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+    <canvas id="particles-container"></canvas>
+
+    <div class="header" id="header">
+        <h1>MY TECH JOURNEY</h1>
+        <div class="subtitle">A chronicle of growth, learning and innovation</div>
+        <div class="scroll-icon"></div>
+    </div>
+
+    <div class="timeline" id="timeline">
+        <!-- January 2024 -->
+        <div class="timeline-item left">
+            <div class="timeline-content">
+                <div class="date">January 2024</div>
+                <h2 class="title">New Beginnings</h2>
+                <div class="tech-badge">JavaScript</div>
+                <div class="tech-badge">React</div>
+                <div class="description">
+                    <span class="month-highlight">January 2024</span>
+                    Started learning advanced React patterns and state management techniques.
+                    Built my first custom hook library and published it on npm.
+                    Focused on performance optimization and component architecture.
+                </div>
+                <div class="glow"></div>
+            </div>
+        </div>
+
+        <!-- February 2024 -->
+        <div class="timeline-item right">
+            <div class="timeline-content">
+                <div class="date">February 2024</div>
+                <h2 class="title">Backend Exploration</h2>
+                <div class="tech-badge">Node.js</div>
+                <div class="tech-badge">Express</div>
+                <div class="description">
+                    <span class="month-highlight">February 2024</span>
+                    Explored server-side development with Node.js and Express.
+                    Built my first RESTful API with authentication and authorization.
+                    Implemented JWT token-based authentication system.
+                </div>
+                <div class="glow"></div>
+            </div>
+        </div>
+
+        <!-- March 2024 -->
+        <div class="timeline-item left">
+            <div class="timeline-content">
+                <div class="date">March 2024</div>
+                <h2 class="title">Database Mastery</h2>
+                <div class="tech-badge">MongoDB</div>
+                <div class="tech-badge">Mongoose</div>
+                <div class="description">
+                    <span class="month-highlight">March 2024</span>
+                    Mastered MongoDB and implemented complex data models with Mongoose.
+                    Learned advanced query operations and indexing strategies.
+                    Built a custom ORM layer for a personal project.
+                </div>
+                <div class="glow"></div>
+            </div>
+        </div>
+
+        <!-- April 2024 -->
+        <div class="timeline-item right">
+            <div class="timeline-content">
+                <div class="date">April 2024</div>
+                <h2 class="title">Cloud Journey</h2>
+                <div class="tech-badge">AWS</div>
+                <div class="tech-badge">Serverless</div>
+                <div class="description">
+                    <span class="month-highlight">April 2024</span>
+                    Started exploring AWS cloud services.
+                    Implemented my first serverless functions with AWS Lambda.
+                    Set up CI/CD pipelines for automated deployments.
+                </div>
+                <div class="glow"></div>
+            </div>
+        </div>
+
+        <!-- May 2024 -->
+        <div class="timeline-item left">
+            <div class="timeline-content">
+                <div class="date">May 2024</div>
+                <h2 class="title">Frontend Frameworks</h2>
+                <div class="tech-badge">Vue.js</div>
+                <div class="tech-badge">Svelte</div>
+                <div class="description">
+                    <span class="month-highlight">May 2024</span>
+                    Expanded knowledge beyond React to include Vue.js and Svelte.
+                    Completed my first comparative analysis project using all three frameworks.
+                    Published a technical blog post about the experience.
+                </div>
+                <div class="glow"></div>
+            </div>
+        </div>
+
+        <!-- June 2024 -->
+        <div class="timeline-item right">
+            <div class="timeline-content">
+                <div class="date">June 2024</div>
+                <h2 class="title">Mobile Development</h2>
+                <div class="tech-badge">React Native</div>
+                <div class="tech-badge">Mobile UX</div>
+                <div class="description">
+                    <span class="month-highlight">June 2024</span>
+                    Took a deep dive into mobile development with React Native.
+                    Built and published my first mobile app on App Store and Google Play.
+                    Learned about responsive design patterns for mobile interfaces.
+                </div>
+                <div class="glow"></div>
+            </div>
+        </div>
+
+        <!-- July 2024 -->
+        <div class="timeline-item left">
+            <div class="timeline-content">
+                <div class="date">July 2024</div>
+                <h2 class="title">Testing & Quality</h2>
+                <div class="tech-badge">Jest</div>
+                <div class="tech-badge">Cypress</div>
+                <div class="description">
+                    <span class="month-highlight">July 2024</span>
+                    Focused on testing methodologies and tools.
+                    Implemented comprehensive test suites using Jest and Cypress.
+                    Achieved 90%+ code coverage on all personal projects.
+                </div>
+                <div class="glow"></div>
+            </div>
+        </div>
+
+        <!-- August 2024 -->
+        <div class="timeline-item right">
+            <div class="timeline-content">
+                <div class="date">August 2024</div>
+                <h2 class="title">DevOps & CI/CD</h2>
+                <div class="tech-badge">Docker</div>
+                <div class="tech-badge">GitHub Actions</div>
+                <div class="description">
+                    <span class="month-highlight">August 2024</span>
+                    Learned containerization with Docker and Kubernetes.
+                    Set up automated CI/CD pipelines with GitHub Actions.
+                    Implemented infrastructure as code principles.
+                </div>
+                <div class="glow"></div>
+            </div>
+        </div>
+
+        <!-- September 2024 -->
+        <div class="timeline-item left">
+            <div class="timeline-content">
+                <div class="date">September 2024</div>
+                <h2 class="title">Animation & 3D</h2>
+                <div class="tech-badge">Three.js</div>
+                <div class="tech-badge">GSAP</div>
+                <div class="description">
+                    <span class="month-highlight">September 2024</span>
+                    Explored advanced animation techniques with GSAP.
+                    Created my first 3D web experiences with Three.js.
+                    Built an interactive portfolio showcasing animation skills.
+                </div>
+                <div class="glow"></div>
+            </div>
+        </div>
+
+        <!-- October 2024 -->
+        <div class="timeline-item right">
+            <div class="timeline-content">
+                <div class="date">October 2024</div>
+                <h2 class="title">Performance Optimization</h2>
+                <div class="tech-badge">Webpack</div>
+                <div class="tech-badge">Lighthouse</div>
+                <div class="description">
+                    <span class="month-highlight">October 2024</span>
+                    Mastered build tools and bundlers like Webpack and Vite.
+                    Implemented advanced code-splitting and lazy loading techniques.
+                    Achieved perfect Lighthouse scores on personal projects.
+                </div>
+                <div class="glow"></div>
+            </div>
+        </div>
+
+        <!-- November 2024 -->
+        <div class="timeline-item left">
+            <div class="timeline-content">
+                <div class="date">November 2024</div>
+                <h2 class="title">TypeScript Mastery</h2>
+                <div class="tech-badge">TypeScript</div>
+                <div class="tech-badge">Type Systems</div>
+                <div class="description">
+                    <span class="month-highlight">November 2024</span>
+                    Deepened TypeScript knowledge and type system understanding.
+                    Converted all personal projects to TypeScript.
+                    Learned advanced generic types and utility types.
+                </div>
+                <div class="glow"></div>
+            </div>
+        </div>
+
+        <!-- December 2024 -->
+        <div class="timeline-item right">
+            <div class="timeline-content">
+                <div class="date">December 2024</div>
+                <h2 class="title">Year-End Projects</h2>
+                <div class="tech-badge">Full-Stack</div>
+                <div class="tech-badge">Open Source</div>
+                <div class="description">
+                    <span class="month-highlight">December 2024</span>
+                    Completed a major full-stack application integrating all learned technologies.
+                    Contributed to open source projects.
+                    Conducted year-end review and set goals for 2025.
+                </div>
+                <div class="glow"></div>
+            </div>
+        </div>
+
+        <!-- January 2025 -->
+        <div class="timeline-item left">
+            <div class="timeline-content">
+                <div class="date">January 2025</div>
+                <h2 class="title">AI Integration</h2>
+                <div class="tech-badge">TensorFlow.js</div>
+                <div class="tech-badge">ML Models</div>
+                <div class="description">
+                    <span class="month-highlight">January 2025</span>
+                    Began integrating AI capabilities into web applications.
+                    Learned TensorFlow.js and implemented client-side ML models.
+                    Built an image recognition feature for a personal project.
+                </div>
+                <div class="glow"></div>
+            </div>
+        </div>
+
+        <!-- February 2025 -->
+        <div class="timeline-item right">
+            <div class="timeline-content">
+                <div class="date">February 2025</div>
+                <h2 class="title">Blockchain Exploration</h2>
+                <div class="tech-badge">Ethereum</div>
+                <div class="tech-badge">Smart Contracts</div>
+                <div class="description">
+                    <span class="month-highlight">February 2025</span>
+                    Started learning blockchain technology and Ethereum development.
+                    Created my first smart contract using Solidity.
+                    Built a simple dApp with Web3.js integration.
+                </div>
+                <div class="glow"></div>
+            </div>
+        </div>
+
+        <!-- March 2025 -->
+        <div class="timeline-item left">
+            <div class="timeline-content">
+                <div class="date">March 2025</div>
+                <h2 class="title">Microservices Architecture</h2>
+                <div class="tech-badge">Microservices</div>
+                <div class="tech-badge">API Gateway</div>
+                <div class="description">
+                    <span class="month-highlight">March 2025</span>
+                    Refactored monolithic applications into microservices.
+                    Implemented service discovery and API gateway patterns.
+                    Learned about distributed systems and their challenges.
+                </div>
+                <div class="glow"></div>
+            </div>
+        </div>
+
+        <!-- April 2025 -->
+        <div class="timeline-item right">
+            <div class="timeline-content">
+                <div class="date">April 2025</div>
+                <h2 class="title">WebAssembly</h2>
+                <div class="tech-badge">WASM</div>
+                <div class="tech-badge">Rust</div>
+                <div class="description">
+                    <span class="month-highlight">April 2025</span>
+                    Explored WebAssembly and its performance benefits.
+                    Started learning Rust for WASM compilation.
+                    Built a high-performance browser-based algorithm visualizer.
+                </div>
+                <div class="glow"></div>
+            </div>
+        </div>
+
+        <!-- May 2025 -->
+        <div class="timeline-item left">
+            <div class="timeline-content">
+                <div class="date">May 2025</div>
+                <h2 class="title">Accessibility Focus</h2>
+                <div class="tech-badge">a11y</div>
+                <div class="tech-badge">ARIA</div>
+                <div class="description">
+                    <span class="month-highlight">May 2025</span>
+                    Dedicated time to web accessibility standards and best practices.
+                    Performed accessibility audits on all personal projects.
+                    Implemented ARIA attributes and keyboard navigation patterns.
+                </div>
+                <div class="glow"></div>
+            </div>
+        </div>
+
+        <!-- June 2025 -->
+        <div class="timeline-item right">
+            <div class="timeline-content">
+                <div class="date">June 2025</div>
+                <h2 class="title">GraphQL Expertise</h2>
+                <div class="tech-badge">GraphQL</div>
+                <div class="tech-badge">Apollo</div>
+                <div class="description">
+                    <span class="month-highlight">June 2025</span>
+                    Mastered GraphQL API design and implementation.
+                    Built a robust GraphQL server with Apollo.
+                    Implemented real-time features with GraphQL subscriptions.
+                </div>
+                <div class="glow"></div>
+            </div>
+        </div>
+
+        <!-- July 2025 -->
+        <div class="timeline-item left">
+            <div class="timeline-content">
+                <div class="date">July 2025</div>
+                <h2 class="title">Cybersecurity</h2>
+                <div class="tech-badge">Security</div>
+                <div class="tech-badge">Penetration Testing</div>
+                <div class="description">
+                    <span class="month-highlight">July 2025</span>
+                    Studied cybersecurity best practices for web applications.
+                    Learned common attack vectors and prevention strategies.
+                    Performed security audits on personal projects.
+                </div>
+                <div class="glow"></div>
+            </div>
+        </div>
+
+        <!-- August 2025 -->
+        <div class="timeline-item right">
+            <div class="timeline-content">
+                <div class="date">August 2025</div>
+                <h2 class="title">Progressive Web Apps</h2>
+                <div class="tech-badge">PWA</div>
+                <div class="tech-badge">Service Workers</div>
+                <div class="description">
+                    <span class="month-highlight">August 2025</span>
+                    Converted existing web applications to PWAs.
+                    Implemented offline capabilities with service workers.
+                    Optimized for installation and app-like experience.
+                </div>
+                <div class="glow"></div>
+            </div>
+        </div>
+
+        <!-- September 2025 -->
+        <div class="timeline-item left">
+            <div class="timeline-content">
+                <div class="date">September 2025</div>
+                <h2 class="title">Mentorship & Teaching</h2>
+                <div class="tech-badge">Education</div>
+                <div class="tech-badge">Community</div>
+                <div class="description">
+                    <span class="month-highlight">September 2025</span>
+                    Started mentoring junior developers.
+                    Created educational content for the dev community.
+                    Hosted workshops on advanced web development topics.
+                </div>
+                <div class="glow"></div>
+            </div>
+        </div>
+
+        <!-- October 2025 -->
+        <div class="timeline-item right">
+            <div class="timeline-content">
+                <div class="date">October 2025</div>
+                <h2 class="title">AR/VR Web Experiences</h2>
+                <div class="tech-badge">WebXR</div>
+                <div class="tech-badge">AR/VR</div>
+                <div class="description">
+                    <span class="month-highlight">October 2025</span>
+                    Explored WebXR and immersive web experiences.
+                    Created browser-based AR demonstrations.
+                    Built a virtual reality portfolio experience.
+                </div>
+                <div class="glow"></div>
+            </div>
+        </div>
+
+        <!-- November 2025 -->
+        <div class="timeline-item left">
+            <div class="timeline-content">
+                <div class="date">November 2025</div>
+                <h2 class="title">Advanced State Management</h2>
+                <div class="tech-badge">Redux Toolkit</div>
+                <div class="tech-badge">XState</div>
+                <div class="description">
+                    <span class="month-highlight">November 2025</span>
+                    Mastered state machines with XState.
+                    Implemented complex state management patterns.
+                    Created a reusable state management library.
+                </div>
+                <div class="glow"></div>
+            </div>
+        </div>
+
+        <!-- December 2025 -->
+        <div class="timeline-item right">
+            <div class="timeline-content">
+                <div class="date">December 2025</div>
+                <h2 class="title">Next Big Project</h2>
+                <div class="tech-badge">Innovation</div>
+                <div class="tech-badge">Full-Stack</div>
+                <div class="description">
+                    <span class="month-highlight">December 2025</span>
+                    Planned and began development on a major project combining all learned skills.
+                    Applied advanced architectural patterns.
+                    Reflected on two years of tech journey and set goals for 2026.
+                </div>
+                <div class="glow"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Particles background
+        (() => {
+            const canvas = document.getElementById('particles-container');
+            const ctx = canvas.getContext('2d');
+
+            // Make canvas full screen
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+
+            // Handle window resize
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
+
+            // Particle class
+            class Particle {
+                constructor() {
+                    this.reset();
+                }
+
+                reset() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.size = Math.random() * 3 + 1;
+                    this.speedX = (Math.random() - 0.5) * 0.5;
+                    this.speedY = (Math.random() - 0.5) * 0.5;
+                    this.color = this.getGoldColor();
+                    this.opacity = Math.random() * 0.5 + 0.1;
+                    this.isGlowing = Math.random() > 0.7;
+                }
+
+                getGoldColor() {
+                    const colors = [
+                        '#c6a55c',
+                        '#d4b76b',
+                        '#e6c275',
+                        '#f1da9c'
+                    ];
+                    return colors[Math.floor(Math.random() * colors.length)];
+                }
+
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+
+                    // Particle glowing effect
+                    if (this.isGlowing) {
+                        this.opacity = 0.1 + Math.abs(Math.sin(Date.now() * 0.001)) * 0.5;
+                    }
+
+                    // Reset particles that move off screen
+                    if (this.x < 0 || this.x > canvas.width ||
+                        this.y < 0 || this.y > canvas.height) {
+                        this.reset();
+                    }
+                }
+
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fillStyle = this.color;
+                    ctx.globalAlpha = this.opacity;
+                    ctx.fill();
+
+                    // Add glow effect for some particles
+                    if (this.isGlowing) {
+                        ctx.beginPath();
+                        ctx.arc(this.x, this.y, this.size * 2, 0, Math.PI * 2);
+                        ctx.fillStyle = this.color;
+                        ctx.globalAlpha = this.opacity * 0.3;
+                        ctx.fill();
+                    }
+
+                    ctx.globalAlpha = 1;
+                }
+            }
+
+            // Create particles array
+            const particles = [];
+            const particleCount = Math.min(canvas.width / 10, 100); // Responsive particle count
+
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+
+            // Animation loop
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                // Draw and update all particles
+                particles.forEach(particle => {
+                    particle.update();
+                    particle.draw();
+                });
+
+                // Connect nearby particles with lines
+                connectParticles();
+
+                requestAnimationFrame(animate);
+            }
+
+            // Connect particles that are close to each other
+            function connectParticles() {
+                for (let i = 0; i < particles.length; i++) {
+                    for (let j = i + 1; j < particles.length; j++) {
+                        const dx = particles[i].x - particles[j].x;
+                        const dy = particles[i].y - particles[j].y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+
+                        if (distance < 100) {
+                            ctx.beginPath();
+                            ctx.strokeStyle = `rgba(198, 165, 92, ${0.1 * (1 - distance / 100)})`;
+                            ctx.lineWidth = 0.5;
+                            ctx.moveTo(particles[i].x, particles[i].y);
+                            ctx.lineTo(particles[j].x, particles[j].y);
+                            ctx.stroke();
+                        }
+                    }
+                }
+            }
+
+            // Start animation
+            animate();
+        })();
+
+        // Intersection Observer for scroll animations
+        (() => {
+            // Show header when page loads
+            document.addEventListener('DOMContentLoaded', () => {
+                setTimeout(() => {
+                    document.getElementById('header').classList.add('visible');
+                }, 300);
+            });
+
+            // Observer for timeline items
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        // Gradually reveal more as user scrolls
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            });
+
+            // Observe all timeline items
+            document.querySelectorAll('.timeline-item').forEach(item => {
+                observer.observe(item);
+            });
+        })();
+
+        // Progress bar
+        (() => {
+            window.addEventListener('scroll', () => {
+                const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrolled = (winScroll / height) * 100;
+                document.getElementById('progressBar').style.width = scrolled + '%';
+            });
+        })();
+
+        // Mouse parallax effect for timeline items
+        (() => {
+            const timelineContents = document.querySelectorAll('.timeline-content');
+
+            document.addEventListener('mousemove', (e) => {
+                const mouseX = e.clientX;
+                const mouseY = e.clientY;
+
+                timelineContents.forEach(content => {
+                    const rect = content.getBoundingClientRect();
+                    const contentCenterX = rect.left + rect.width / 2;
+                    const contentCenterY = rect.top + rect.height / 2;
+
+                    // Calculate distance from mouse to content center
+                    const distanceX = mouseX - contentCenterX;
+                    const distanceY = mouseY - contentCenterY;
+
+                    // Only apply effect if mouse is close to the content
+                    const maxDistance = 300;
+                    const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+
+                    if (distance < maxDistance) {
+                        // Calculate tilt amount (max 5 degrees)
+                        const tiltX = distanceY * 0.01;
+                        const tiltY = -distanceX * 0.01;
+
+                        // Apply transform
+                        content.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+                    } else {
+                        content.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+                    }
+                });
+            });
+
+            // Reset transform when mouse leaves window
+            document.addEventListener('mouseleave', () => {
+                timelineContents.forEach(content => {
+                    content.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+                });
+            });
+        })();
+
+        // Mobile detection and enhancements
+        (() => {
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+            if (isMobile) {
+                // Disable heavy animations on mobile for better performance
+                document.querySelectorAll('.timeline-content').forEach(content => {
+                    content.style.transform = 'none';
+                    content.style.transition = 'all 0.3s ease';
+                });
+
+                // Reduce particle count for better mobile performance
+                const canvas = document.getElementById('particles-container');
+                canvas.style.opacity = '0.5';
+            }
+        })();
+    </script>
+</body>
+
+</html>

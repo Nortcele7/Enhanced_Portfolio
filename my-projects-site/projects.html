@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Projects Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #FFD700;
+      --primary-dark: #DAA520;
+      --secondary: #CD7F32;
+      --accent: #B8860B;
+      --accent-2: #F7E7CE;
+      --gold-light: #FFEF94;
+      --gold-dark: #B8860B;
+      --bronze: #CD7F32;
+      --background: #000000;
+      --surface: #0a0a0a;
+      --card: #111111;
+      --card-hover: #1a1a1a;
+      --text-primary: #ffffff;
+      --text-secondary: #b0b0b0;
+      --text-muted: #888888;
+      --border: #333333;
+      --border-hover: #444444;
+      --shadow: rgba(0, 0, 0, 0.8);
+      --gradient: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      --gradient-alt: linear-gradient(135deg, var(--secondary) 0%, var(--accent-2) 100%);
+      --gradient-dark: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+      --gold-glow: rgba(255, 215, 0, 0.3);
+      --gold-glow-strong: rgba(255, 215, 0, 0.6);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Space Grotesk', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--background);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+      font-weight: 400;
+      position: relative;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        linear-gradient(rgba(255, 215, 0, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 215, 0, 0.03) 1px, transparent 1px);
+      background-size: 50px 50px;
+      z-index: -2;
+      pointer-events: none;
+    }
+
+    /* Animated Background */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(255, 215, 0, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(205, 127, 50, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(184, 134, 11, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 60% 70%, rgba(247, 231, 206, 0.08) 0%, transparent 50%);
+      z-index: -1;
+      animation: backgroundShift 30s ease-in-out infinite alternate;
+    }
+
+    @keyframes backgroundShift {
+      0% { transform: translateX(0) translateY(0); }
+      100% { transform: translateX(-10px) translateY(-5px); }
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 4rem;
+      position: relative;
+    }
+
+    .header::before {
+      content: '✦';
+      position: absolute;
+      top: -20px;
+      left: 20%;
+      color: var(--primary);
+      font-size: 1.5rem;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .header::after {
+      content: '✧';
+      position: absolute;
+      top: 50px;
+      right: 15%;
+      color: var(--accent);
+      font-size: 1.2rem;
+      animation: pulse 2s ease-in-out infinite 0.5s;
+    }
+
+    .header h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 900;
+      font-family: 'Space Grotesk', sans-serif;
+      letter-spacing: -0.02em;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    .header p {
+      font-size: 1.2rem;
+      font-weight: 400;
+      font-family: 'Inter', sans-serif;  
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+      animation: fadeInUp 0.8s ease-out 0.2s both;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .project-card {
+      background: var(--card);
+      border-radius: 20px;
+      padding: 2rem;
+      border: 1px solid var(--border);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      animation: fadeInUp 0.6s ease-out;
+      backdrop-filter: blur(10px);
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--gradient);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    .project-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.05) 0%, rgba(184, 134, 11, 0.05) 100%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+
+    .project-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .project-card:hover::after {
+      opacity: 1;
+    }
+
+    .project-card:hover {
+      transform: translateY(-12px) scale(1.02);
+      box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.4),
+        0 0 30px var(--gold-glow);
+      border-color: var(--primary);
+      background: var(--card-hover);
+    }
+
+    .project-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .project-icon {
+      width: 60px;
+      height: 60px;
+      background: var(--gradient);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      color: white;
+      position: relative;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 20px var(--gold-glow);
+    }
+
+    .project-icon::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: var(--gradient);
+      border-radius: 18px;
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .project-card:hover .project-icon {
+      transform: rotate(5deg) scale(1.1);
+      box-shadow: 0 12px 30px var(--gold-glow-strong);
+    }
+
+    .project-card:hover .project-icon::before {
+      opacity: 1;
+    }
+
+    .project-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      font-family: 'Space Grotesk', sans-serif;
+      letter-spacing: -0.01em;
+      color: var(--text-primary);
+    }
+
+    .tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .tech-tag {
+      background: rgba(255, 215, 0, 0.15);
+      color: var(--primary);
+      padding: 0.4rem 1rem;
+      border-radius: 25px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      font-family: 'JetBrains Mono', monospace;
+      border: 1px solid rgba(255, 215, 0, 0.3);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tech-tag::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .project-card:hover .tech-tag::before {
+      left: 100%;
+    }
+
+    .project-card:hover .tech-tag {
+      background: rgba(255, 215, 0, 0.25);
+      border-color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    .project-description {
+      color: var(--text-secondary);
+      line-height: 1.6;
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      margin-bottom: 1.5rem;
+    }
+
+    .project-actions {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .btn {
+      padding: 0.7rem 1.5rem;
+      border: none;
+      border-radius: 10px;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      font-size: 0.9rem;
+      border: 2px solid transparent;
+    }
+
+    .btn:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.2);
+    }
+
+    .btn-primary {
+      background: var(--gradient);
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.3s ease;
+    }
+
+    .btn-primary:hover::before {
+      left: 100%;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px var(--gold-glow);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-secondary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: var(--gradient);
+      opacity: 0.1;
+      transition: left 0.3s ease;
+    }
+
+    .btn-secondary:hover::before {
+      left: 100%;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 215, 0, 0.1);
+      border-color: var(--primary);
+      transform: translateY(-2px);
+      color: var(--primary);
+    }
+
+    /* Project Detail Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 1;
+    }
+
+    .modal-content {
+      background: var(--card);
+      border-radius: 24px;
+      padding: 3rem;
+      max-width: 800px;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+      border: 1px solid var(--border);
+      transform: scale(0.8);
+      transition: transform 0.3s ease;
+      position: relative;
+    }
+
+    .modal.active .modal-content {
+      transform: scale(1);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      color: var(--text-primary);
+      cursor: pointer;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+    }
+
+    .modal-close:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: rotate(90deg);
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .modal-icon {
+      width: 80px;
+      height: 80px;
+      background: var(--gradient);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: white;
+    }
+
+    .modal-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      font-family: 'Space Grotesk', sans-serif;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+    }
+
+    .modal-tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-bottom: 2rem;
+    }
+
+    .modal-tech-tag {
+      background: rgba(255, 215, 0, 0.15);
+      color: var(--primary);
+      padding: 0.5rem 1rem;
+      border-radius: 25px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      font-family: 'JetBrains Mono', monospace;
+      border: 1px solid rgba(255, 215, 0, 0.3);
+    }
+
+    .modal-description {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+
+    @keyframes glow {
+      0%, 100% { box-shadow: 0 0 20px var(--gold-glow); }
+      50% { box-shadow: 0 0 30px var(--gold-glow-strong); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* Add floating animation to header */
+    .header h1 {
+      animation: fadeInUp 0.8s ease-out, float 6s ease-in-out infinite 2s;
+    }
+
+    /* Add glow effect to primary buttons */
+    .btn-primary {
+      animation: glow 2s ease-in-out infinite;
+    }
+
+    /* Add subtle pulse to project icons */
+    .project-icon {
+      animation: pulse 3s ease-in-out infinite;
+    }
+
+    .project-card:hover .project-icon {
+      animation: none;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 1rem;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .project-card {
+        padding: 1.5rem;
+      }
+
+      .modal-content {
+        padding: 2rem;
+        margin: 1rem;
+      }
+
+      .modal-header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .modal-title {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>My Project Portfolio</h1>
+      <p>Explore my collection of creative projects built with passion and modern technologies</p>
+    </div>
+
+    <div class="projects-grid" id="projectsGrid">
+      <!-- Projects will be dynamically loaded here -->
+    </div>
+  </div>
+
+  <!-- Project Detail Modal -->
+  <div class="modal" id="projectModal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal()">&times;</button>
+      <div class="modal-header">
+        <div class="modal-icon" id="modalIcon"></div>
+        <div>
+          <h2 class="modal-title" id="modalTitle"></h2>
+        </div>
+      </div>
+      <div class="modal-tech-tags" id="modalTechTags"></div>
+      <div class="modal-description" id="modalDescription"></div>
+      <div class="modal-actions" id="modalActions"></div>
+    </div>
+  </div>
+
+  <script>
+    // Project data
+    const projects = [
+      {
+        id: 'language-translator',
+        title: 'Language Translator',
+        icon: 'fas fa-language',
+        tags: ['Python', 'google_translate'],
+        description: 'A Python-based command-line translator that converts your speech into multiple languages in real-time. It uses Google\'s speech recognition, translation, and text-to-speech APIs to deliver seamless voice translations directly in the terminal.',
+        github: 'https://github.com/Nortcele7/Language_Translator.git'
+      },
+      {
+        id: 'cohesion',
+        title: 'Cohesion',
+        icon: 'fas fa-graduation-cap',
+        tags: ['JavaScript','Node','Express','MongoDB','bcrypt','JWT','EJS'],
+        description: 'Cohesion is a modern, feature-rich computer-based testing platform built with Node.js, Express.js, and MongoDB. Designed for students and educators, it enables seamless quiz creation, interactive testing, intelligent scoring, and detailed performance analytics—all in a secure, intuitive environment.',
+        github: 'https://github.com/Nortcele7/Cohesion.git'
+      },
+      {
+        id: 'type-fast-cmd',
+        title: 'TypeFastCMD',
+        icon: 'fas fa-keyboard',
+        tags: ['C', 'Terminal', 'Typing'],
+        description: 'TypeFast.cmd is a feature-rich, Windows terminal application written in C that helps users improve typing speed and accuracy. With multiple test modes, user account management, and detailed performance analytics, it provides an engaging and interactive typing experience for beginners and advanced typists alike.',
+        github: 'https://github.com/Nortcele7/TypeFast.cmd.git'
+      },
+      {
+        id: 'weathery',
+        title: 'Weathery 🌤️',
+        icon: 'fas fa-cloud-sun',
+        tags: ['JavaScript','React','Vite'],
+        description: 'Weathery is a modern, responsive weather application built with React and Vite that delivers real-time weather information for any location worldwide. Featuring a clean, intuitive interface with custom weather icons, it provides temperature, humidity, wind speed, and current conditions, all optimized for desktop and mobile devices.',
+        github: 'https://github.com/Nortcele7/Weathery.git'
+      },
+      {
+        id: 'subscription-tracker-api',
+        title: 'Subscription Tracker API',
+        icon: 'fas fa-server',
+        tags: ['JavaScript', 'Node','Express', 'MongoDB', 'Arcjet'],
+        description: 'A Scalable and Production Ready Subscription Tracker API that handles real business logic and implements Arcjet for Rate limiting and Bot protection and MongoDB and its ORM/ODM mongoose for database management.',
+        github: 'https://github.com/Nortcele7/Subscription_Tracker_API.git'
+      },
+    ];    // Render projects
+    function renderProjects() {
+      const grid = document.getElementById('projectsGrid');
+      grid.innerHTML = projects.map(project => `
+        <div class="project-card" onclick="openModal('${project.id}')">
+          <div class="project-header">
+            <div class="project-icon">
+              <i class="${project.icon}"></i>
+            </div>
+            <h3 class="project-title">${project.title}</h3>
+          </div>
+          <div class="tech-tags">
+            ${project.tags.map(tag => `<span class="tech-tag">${tag}</span>`).join('')}
+          </div>
+          <p class="project-description">${project.description.substring(0, 150)}...</p>
+          <div class="project-actions">
+            <button class="btn btn-primary" onclick="event.stopPropagation(); openModal('${project.id}')">
+              <i class="fas fa-eye"></i> View Details
+            </button>
+            <a href="${project.github}" target="_blank" class="btn btn-secondary" onclick="event.stopPropagation()">
+              <i class="fab fa-github"></i> GitHub
+            </a>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Open project modal
+    function openModal(projectId) {
+      const project = projects.find(p => p.id === projectId);
+      if (!project) return;
+
+      document.getElementById('modalIcon').innerHTML = `<i class="${project.icon}"></i>`;
+      document.getElementById('modalTitle').textContent = project.title;
+      document.getElementById('modalTechTags').innerHTML = project.tags.map(tag => 
+        `<span class="modal-tech-tag">${tag}</span>`
+      ).join('');
+      document.getElementById('modalDescription').textContent = project.description;
+      document.getElementById('modalActions').innerHTML = `
+        <a href="${project.github}" target="_blank" class="btn btn-primary">
+          <i class="fab fa-github"></i> View on GitHub
+        </a>
+      `;
+
+      const modal = document.getElementById('projectModal');
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    // Close modal
+    function closeModal() {
+      const modal = document.getElementById('projectModal');
+      modal.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+
+    // Close modal on backdrop click
+    document.getElementById('projectModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeModal();
+      }
+    });
+
+    // Close modal on Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeModal();
+      }
+    });
+
+    // Initialize
+    renderProjects();
+
+    // Add stagger animation to cards
+    document.addEventListener('DOMContentLoaded', function() {
+      const cards = document.querySelectorAll('.project-card');
+      cards.forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.1}s`;
+      });
+    });
+  </script>
+</body>
+
+</html>
